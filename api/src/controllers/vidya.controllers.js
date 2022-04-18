@@ -11,7 +11,7 @@ const gameAPI = async () => {
         name: el.name,
         releaseDate: el.released,
         rating: el.rating,
-        background_image: el.background_image,
+        image: el.background_image,
         platforms: el.platforms.map((el) => el.platform.name),
         genres: el.genres.map((el) => {return { id: el.id, name: el.name }}),
         })

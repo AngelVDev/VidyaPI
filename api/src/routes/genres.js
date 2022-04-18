@@ -5,13 +5,15 @@ const { Genre } = require('../db');
 
 router.get('/genres', async (req, res) => {
   const gens = await genAPI();
+  let allGenres = await Genre.findAll();
 try{ 
-    const allGenres = await Genre.findAll();
     if(!allGenres.length){
-        Genre.bulkCreate(gens);
-} else
-  console.log("TE TRAIGO TODO, PAPUUUU AAAAA", allGenres)
-  res.json(allGenres);
+       await Genre.bulkCreate(gens);
+       res.status(201).json("Createds")
+    } else{
+      console.log(allGenres.length)
+      res.status(200).json(allGenres);
+    }
 } catch(err){
     console.log("ESTE ES EL ERROR, CULIADAZO",err)
 }
