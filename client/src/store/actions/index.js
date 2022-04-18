@@ -17,13 +17,13 @@ export function getVideogames(){
 //     dispatch({ type: "GET_GAMES", payload: json });
 //   };
 // }
-export function getDietTypes() {
+export function getGenres() {
   return async function (dispatch) {
     let json = await axios.get("http://localhost:3001/genres", {});
     dispatch({ type: "GET_GENRES", payload: json.data });
   };
 }
-export function getQVideogames(title) {
+export function getQVideogames(name) {
   return async function(dispatch){
     try {
         var json = await axios.get(`http://localhost:3001/videogames?name=${name}`)
