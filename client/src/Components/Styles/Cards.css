@@ -1,0 +1,14 @@
+#container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin: 4vh;
+    width: 40vw;
+    height: 25vh;
+    background-color: yellow;
+}
+#container img {
+    max-width: 60%;
+    height: 24vh;
+}

@@ -6,7 +6,7 @@ const Cards = ({image, name, genres}) => {
       <div id="container">
         <div id="info">
         <h1>{name}</h1>
-        <p>Genres: {genres}</p>
+        <p>Genres: {genres?.map((el)=> el.name + ";  ")}</p>
         </div>
         <img src={image} alt="cardimgerror" />
       </div>

@@ -14,25 +14,26 @@ const dispatch = useDispatch();
 useEffect(()=>{
   dispatch(getVideogames());
   dispatch(getGenres())
-})
+},[dispatch])
   
 if(games){
 return (
     <div className='Wall'>
       The sight of all this games, fills you with determination
-      <Cards id='Cards'>{
-      games &&
-      games.map((GG)=> {
+      <div>
+      {games && games?.map((GG)=> {
+        console.log(games.length)
         return(
-      <Link to={"/home/" + GG.id}>
-        <div
+        <Link to={"/home/" + GG.id}>
+        <Cards 
         name={GG.name}
         image= {GG.image}
         genres={GG.genres}
         key={GG.id}
         />
-      </Link>)})
-      }</Cards>
+        </Link>)})
+      }
+      </div>
     </div>
   )
 } else {
