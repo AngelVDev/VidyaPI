@@ -9,6 +9,7 @@ const gameAPI = async () => {
     const allApi = apiURL.data.results.map((el)=>({
         id: el.id,
         name: el.name,
+        description: el.description,
         releaseDate: el.released,
         rating: el.rating,
         image: el.background_image,
