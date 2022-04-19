@@ -28,7 +28,7 @@ filter: saturate(159%);
 }
     /* From uiverse.io by @namecho */
 .Button,
-Button::after {
+.Button::after {
  padding: 16px 20px;
  font-size: 18px;
  background: linear-gradient(45deg, transparent 5%, rgba( 255, 79, 79, 0.45 ) 5%);
@@ -41,7 +41,7 @@ Button::after {
  position: relative;
 }
 
-Button::after {
+.Button::after {
  --slice-0: inset(50% 50% 50% 50%);
  --slice-1: inset(80% -6px 0 0);
  --slice-2: inset(50% -6px 30% 0);
@@ -60,7 +60,7 @@ Button::after {
  clip-path: var(--slice-0);
 }
 
-Button:hover::after {
+.Button:hover::after {
  animation: 1s glitch;
  animation-timing-function: steps(2, end);
 }

@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getQRecipes } from "../store/actions";
-import "./Styles/SearchBar.css"
+import { getQVideogames } from "../store/actions";
+import "./Styles/Searchbar.css"
 
 const SearchBar = () => {
   let dispatch = useDispatch();
@@ -13,7 +13,7 @@ const SearchBar = () => {
   };
   let handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(getQRecipes(name));
+    dispatch(getQVideogames(name));
   };
   return (
     <div>
