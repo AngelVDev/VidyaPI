@@ -23,6 +23,11 @@ return (
     <div className='Wall'>
       <h3 className='Welcome'>The sight of all this games, fills you with determination 🌟</h3>
       <div>
+        <button>
+          <Link to="/create">
+          Let's create a new one
+          </Link>
+        </button>
         <Filters/>
         <Searchbar/>
       {games && games?.map((GG)=> {

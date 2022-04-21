@@ -34,7 +34,7 @@ const Filters = () => {
     //Filter by genre
     if (filtered) {
       let mapped = games.map(el => el)
-      var product =  mapped.filter(g => (g.genres?.includes(g.thoseGenres)))
+      var product =  mapped.filter(g => (g.genres?.includes(g?.thoseGenres)))
       console.log(product)
     }
     if (filtered === "ALL"){
@@ -62,7 +62,7 @@ const Filters = () => {
     <label>Filter by genre 
     <select onChange={handleFilter} value={product}>
         <option value="ALL">All</option>
-        {thoseGenres.map((genre) => {
+        {thoseGenres?.map((genre) => {
           return <option key={genre.id}>{genre.name}</option>
         })}
     </select>
