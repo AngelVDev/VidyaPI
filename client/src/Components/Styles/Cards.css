@@ -3,12 +3,23 @@
     justify-content: center;
     align-items: center;
     align-content: center;
-    margin: 4vh;
-    width: 40vw;
+    width: 28vw;
     height: 25vh;
-    background-color: yellow;
+    border-radius: 1em;
+    background-color: rgba(255, 102, 196, 0.575);
 }
 #container img {
-    max-width: 60%;
-    height: 24vh;
+    max-height: 20vh;
+    max-width: 16vw;
+    object-fit: cover;
+    border-radius: 5em;
+    height: auto;
+    width: auto;
+}
+#genR {
+    color: beige;
+    background-color: rgba(156, 11, 11, 0.7);border-radius: 4px;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    margin-right: 4px;
 }
