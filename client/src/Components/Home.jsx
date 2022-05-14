@@ -1,52 +1,70 @@
-import React, { useEffect, useState } from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getGenres, getVideogames } from '../store/actions';
-import "./Styles/Home.css"
-import Cards from './Cards';
-import Loader from './Loader';
-import Searchbar from './Searchbar'
-import Filters from './Filters';
+import { getVideogames } from "../store/actions";
+import "./Styles/Home.css";
+import Cards from "./Cards";
+import Loader from "./Loader";
+import Searchbar from "./Searchbar";
+import Filters from "./Filters";
+import Pagination from "./Pagination";
 
 const Home = () => {
   const games = useSelector((state) => state.allGames);
-  const thoseGenres = useSelector((state)=> state.genres);
   const dispatch = useDispatch();
+  /*<--Pagination-->*/
+  const [currentPage, setCurrentPage] = useState(1);
+  // eslint-disable-next-line no-unused-vars
+  const [gamesPerPage, setGamesPerPage] = useState(15);
+  const indexOfLastGame = currentPage * gamesPerPage;
+  const indexOfFirstGame = indexOfLastGame - gamesPerPage;
+  const currentGames = games?.slice(indexOfFirstGame, indexOfLastGame);
+  const PAGINATION = (pageNum) => {
+    setCurrentPage(pageNum);
+  };
 
-  useEffect(()=>{
-  dispatch(getVideogames());
-  dispatch(getGenres())
-  },[dispatch])
+  useEffect(() => {
+    dispatch(getVideogames());
+  }, [dispatch]);
 
-if(games){
-return (
-    <div className='Wall'>
-      <h3 className='Welcome'>The sight of all this games, fills you with determination 🌟</h3>
-      <div>
-        <button>
-          <Link to="/create">
-          Let's create a new one
-          </Link>
-        </button>
-        <Filters/>
-        <Searchbar/>
-      {games && games?.map((GG)=> {
-        return(
-        <Link to={"/home/" + GG.id}>
-        <Cards 
-        name={GG.name}
-        image= {GG.image}
-        genres={GG.genres}
-        key={GG.id}
+  if (games.length) {
+    return (
+      <div key={"parent"} className="Wall">
+        <h3 key={"h3"} className="Welcome">
+          The sight of all this games, fills you with determination 🌟
+        </h3>
+        <nav key={"justNav"} className="Navi">
+          <button key={"butCreate"} className="butCreate">
+            <Link to="/create">Let's create a new one</Link>
+          </button>
+          <Filters />
+          <Searchbar />
+        </nav>
+        <div key={"cCont"} id="cardContainer">
+          {games &&
+            currentGames?.map((GG) => {
+              return (
+                <Link to={"/home/" + GG.id}>
+                  <Cards
+                    name={GG.name}
+                    image={GG.image}
+                    genres={GG.genres}
+                    key={GG.id}
+                  />
+                </Link>
+              );
+            })}
+        </div>
+        <Pagination
+          gamesPerPage={gamesPerPage}
+          games={games.length}
+          pagination={PAGINATION}
         />
-        </Link>)})
-      }
       </div>
-    </div>
-  )
-} else {
-  return(<Loader/>)
-}
-}
+    );
+  } else {
+    return <Loader />;
+  }
+};
 
-export default Home
+export default Home;
