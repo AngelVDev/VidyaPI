@@ -11,7 +11,6 @@ try{
        await Genre.bulkCreate(gens);
        res.status(201).json("Createds")
     } else{
-      console.log(allGenres.length)
       res.status(200).json(allGenres);
     }
 } catch(err){
