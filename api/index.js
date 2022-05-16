@@ -17,12 +17,14 @@
 //     =====`-.____`.___ \_____/___.-`___.-'=====
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-const server = require('./src/app.js');
-const { conn } = require('./src/db.js');
+const server = require("./src/app.js");
+const { conn } = require("./src/db.js");
+const { allInfo } = require("./src/controllers/vidya.controllers");
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
+  allInfo();
   server.listen(3001, () => {
-    console.log('%s LOADING at 3001'); // eslint-disable-line no-console
+    console.log("%s LOADING at 3001"); // eslint-disable-line no-console
   });
 });
