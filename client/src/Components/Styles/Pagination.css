@@ -1,0 +1,26 @@
+#Pagination {
+    width: 45vw;
+    height: 10vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    align-content: center;
+    background-color: #352d3e;
+}
+#Page{
+    color: #ffecdb;
+    text-shadow: 0px 0px 10px #ff4775;
+    padding: 1em 1.2em;
+    width: 2vw ;
+    height: 2vh;
+    margin-right: 0.7em;
+    background-image: url('https://i.gifer.com/7sBM.gif');
+    background-size: cover;
+    background-repeat: none;
+    background-position: top;
+    border-radius: 60%;
+}
+#Page:hover {
+    filter: hue-rotate(150deg);
+  }
