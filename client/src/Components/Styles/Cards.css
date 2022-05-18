@@ -3,10 +3,11 @@
     justify-content: center;
     align-items: center;
     align-content: center;
-    width: 28vw;
+    width: 32vw;
     height: 25vh;
     border-radius: 1em;
     background-color: rgba(255, 102, 196, 0.575);
+    margin: 1rem;
 }
 #container img {
     max-height: 20vh;
