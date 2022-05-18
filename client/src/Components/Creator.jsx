@@ -44,6 +44,10 @@ const Creator = () => {
     genres: [],
     released: "",
   });
+  useEffect(() => {
+    dispatch(getGenres());
+  }, [dispatch]);
+
   function handleChange(e) {
     setInput({
       ...input,
@@ -87,14 +91,11 @@ const Creator = () => {
       genres: input.gens.filter((gen) => gen !== el),
     });
   }
-  useEffect(() => {
-    dispatch(getGenres());
-  }, [dispatch]);
   if (gens.length) {
     return (
-      <div>
+      <div className="containerCreator" key="rootCreator">
         <h1> GAME to be created:</h1>
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form className="formS" key="form" onSubmit={(e) => handleSubmit(e)}>
           <div>
             <label>
               Name:
