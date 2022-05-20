@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   filterByGenre,
   getGenres,
+  getVideogames,
   orderByName,
   orderByRating,
   showCreated,
@@ -14,6 +15,7 @@ const Filters = () => {
 
   useEffect(() => {
     dispatch(getGenres());
+    dispatch(getVideogames());
   }, [dispatch]);
 
   const handleOrderName = (e) => {
@@ -32,9 +34,14 @@ const Filters = () => {
     k.preventDefault();
     dispatch(showCreated(k.target.value));
   };
+  const handleReset = (e) => {
+    e.preventDefault();
+    dispatch(getVideogames());
+  };
 
   return (
     <>
+      <button onClick={(e) => handleReset(e)}>RESET</button>
       <label>
         Sort by name
         <select onChange={(e) => handleOrderName(e)}>
