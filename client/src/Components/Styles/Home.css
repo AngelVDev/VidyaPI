@@ -6,7 +6,13 @@
     background-color: #352d3e;
     background-repeat:repeat-y;
     background-size:cover;
-    display: table;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+
 }
 #cardContainer{
     display: flex;
