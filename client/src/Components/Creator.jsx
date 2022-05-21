@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { createGame, getGenres } from "../store/actions";
+import { createGame, getGenres, getVideogames } from "../store/actions";
 import Loader from "./Loader";
 import "./Styles/Creator.css";
 function validateForms(input) {
@@ -32,6 +32,9 @@ function validateForms(input) {
 }
 const Creator = () => {
   const dispatch = useDispatch();
+  const geim = useSelector((state) => state.allGames);
+  const plats = geim?.map((el) => el);
+  console.log(geim[0]);
   const gens = useSelector((state) => state.genres);
   const navi = useNavigate();
   let [error, setError] = useState({});
@@ -46,6 +49,7 @@ const Creator = () => {
   });
   useEffect(() => {
     dispatch(getGenres());
+    dispatch(getVideogames());
   }, [dispatch]);
 
   function handleChange(e) {
@@ -164,13 +168,12 @@ const Creator = () => {
           <div>
             <label>
               Platforms:
-              <input
-                type="text"
-                value={input.platforms}
-                name="platforms"
-                required
-                onChange={(e) => handleChange(e)}
-              />
+              <select name="platforms" onChange={(e) => handleSelect(e)}>
+                <option value="">-</option>
+                {plats?.map((el) => (
+                  <option value={el}>{el}</option>
+                ))}
+              </select>
               {error.platforms && <p>{error.platforms} </p>}
             </label>
           </div>
@@ -184,11 +187,11 @@ const Creator = () => {
                 </option>
               ))}
             </select>
-            {error.gens && <p>{error.gens} </p>}
+            {error.genres && <p>{error.genres} </p>}
           </label>
           <button
             onClick={handleClick}
-            disabled={Object.keys(error).length}
+            // disabled={Object.keys(error).length}
             type="submit"
           >
             Send to database
@@ -198,7 +201,7 @@ const Creator = () => {
           {input.gens?.map((el) => (
             <div>
               <button onClick={() => handleDelete(el)}>x</button>
-              <p>{el.name}</p>
+              <p>{el}</p>
             </div>
           ))}
         </ul>
