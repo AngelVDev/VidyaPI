@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getQVideogames } from "../store/actions";
-import "./Styles/Searchbar.css"
+import "./Styles/Searchbar.css";
 
 const SearchBar = () => {
   let dispatch = useDispatch();
@@ -10,6 +10,7 @@ const SearchBar = () => {
   let handleInputChange = (e) => {
     e.preventDefault();
     setName(e.target.value);
+    dispatch(getQVideogames(name));
   };
   let handleSubmit = (e) => {
     e.preventDefault();
