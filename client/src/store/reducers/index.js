@@ -1,6 +1,6 @@
 const initialState = {
   games: [], //copia burda para hacerle magia
-  allGames: [], //las buenas recetas
+  allGames: [], //los buenos games
   genres: [],
   gameDetail: [],
 };
@@ -77,6 +77,7 @@ function rootReducer(state = initialState, action) {
         allGames: sortRate,
       };
     case "SORT_NAME":
+      const copeeGames = [...state.games];
       const sorted =
         action.payload === "ASC"
           ? state.games.sort((a, b) => {
@@ -98,7 +99,7 @@ function rootReducer(state = initialState, action) {
               }
               return 0;
             })
-          : state.allGames;
+          : copeeGames;
       return {
         ...state,
         allGames: sorted,
