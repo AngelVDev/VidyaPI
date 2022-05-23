@@ -64,10 +64,14 @@ export let createGame = (payload) => {
 
 export function orderByName(payload) {
   return async (dispatch) => {
-    dispatch({
-      type: "SORT_NAME",
-      payload,
-    });
+    try {
+      dispatch({
+        type: "SORT_NAME",
+        payload,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 }
 export function showCreated(payload) {
@@ -95,11 +99,16 @@ export function filterByGenre(payload) {
   };
 }
 export function orderByRating(payload) {
-  return async (dispatch) =>
-    dispatch({
-      type: "SORT_RATING",
-      payload,
-    });
+  return async (dispatch) => {
+    try {
+      dispatch({
+        type: "SORT_RATING",
+        payload,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 }
 
 export function deleteById(id) {
