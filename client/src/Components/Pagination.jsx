@@ -11,11 +11,11 @@ const Pagination = ({ games, gamesPerPage, pagination }) => {
   }
   return (
     <nav id="Pagination">
-      <ul>
+      <ul key={"thisUl"}>
         {pageNum &&
           pageNum.map((number) => (
             // eslint-disable-next-line jsx-a11y/anchor-is-valid
-            <a id="Page" onClick={() => pagination(number)}>
+            <a key={number} id="Page" onClick={() => pagination(number)}>
               {number}
             </a>
           ))}
