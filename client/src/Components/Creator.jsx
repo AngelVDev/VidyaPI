@@ -13,7 +13,7 @@ function validateForms(input) {
     error.description =
       "Description too short; write something above 10 characters";
   }
-  if (!input.image.includes("https//")) {
+  if (!input.image) {
     error.image = "Please put a valid URL";
   }
   if (input.rating < 1 || input.rating > 5) {
@@ -32,9 +32,6 @@ function validateForms(input) {
 }
 const Creator = () => {
   const dispatch = useDispatch();
-  const geim = useSelector((state) => state.allGames);
-  const plats = geim?.map((el) => el);
-  console.log(geim[0]);
   const gens = useSelector((state) => state.genres);
   const navi = useNavigate();
   let [error, setError] = useState({});
@@ -88,6 +85,12 @@ const Creator = () => {
       genres: [input.gens, e.target.value].filter(Boolean),
     });
   }
+  // function handlePlats(e) {
+  //   setInput({
+  //     ...input,
+  //     platforms: [input.platforms, e.target.value].filter(Boolean),
+  //   });
+  // }
 
   function handleDelete(el) {
     setInput({
@@ -142,7 +145,7 @@ const Creator = () => {
               Rating:
               <input
                 type="number"
-                min="1"
+                min="0"
                 max="5"
                 value={input.rating}
                 name="rating"
@@ -168,11 +171,17 @@ const Creator = () => {
           <div>
             <label>
               Platforms:
-              <select name="platforms" onChange={(e) => handleSelect(e)}>
+              <select name="platforms" onChange={(e) => handleChange(e)}>
                 <option value="">-</option>
-                {plats?.map((el) => (
-                  <option value={el}>{el}</option>
-                ))}
+                <option value="PS3">PS3</option>
+                <option value="PS4">PS4</option>
+                <option value="PS5">PS5</option>
+                <option value="Wii">Wii</option>
+                <option value="Wii U">Wii U</option>
+                <option value="PC">PC</option>
+                <option value="Xbox 360">Xbox 360</option>
+                <option value="Xbox One">Xbox One</option>
+                <option value="Xbox Series">Xbox Series</option>
               </select>
               {error.platforms && <p>{error.platforms} </p>}
             </label>
@@ -191,7 +200,7 @@ const Creator = () => {
           </label>
           <button
             onClick={handleClick}
-            // disabled={Object.keys(error).length}
+            disabled={Object.keys(error).length}
             type="submit"
           >
             Send to database
@@ -201,7 +210,7 @@ const Creator = () => {
           {input.gens?.map((el) => (
             <div>
               <button onClick={() => handleDelete(el)}>x</button>
-              <p>{el}</p>
+              <p>PAPEL DE DIARIO{el}</p>
             </div>
           ))}
         </ul>
