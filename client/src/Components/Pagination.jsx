@@ -7,7 +7,7 @@ const Pagination = ({ games, gamesPerPage, pagination }) => {
     pageNum.push(i);
   }
   if (games <= 15) {
-    return (pageNum = 0);
+    return (pageNum = null);
   }
   return (
     <nav id="Pagination">
