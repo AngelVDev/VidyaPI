@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { createGame, getGenres, getVideogames } from "../store/actions";
 import Loader from "./Loader";
 import "./Styles/Creator.css";
@@ -13,19 +13,19 @@ function validateForms(input) {
     error.description =
       "Description too short; write something above 10 characters";
   }
-  if (!input.image) {
+  if (!input.image.includes("https")) {
     error.image = "Please put a valid URL";
   }
   if (input.rating < 1 || input.rating > 5) {
     error.rating = "The value must be a number between 1 and 5";
   }
-  if (!input.releaseDate) {
+  if (input.releaseDate === null) {
     error.releaseDate = "Release date cannot be empty";
   }
-  if (!input.platforms) {
+  if (!input.platforms.length) {
     error.platforms = "Please select the platforms";
   }
-  if (!input.genres) {
+  if (!input.genres.length) {
     error.genres = "Select at least one genre";
   }
   return error;
@@ -42,7 +42,7 @@ const Creator = () => {
     rating: "",
     platforms: [],
     genres: [],
-    released: "",
+    releaseDate: "",
   });
   useEffect(() => {
     dispatch(getGenres());
@@ -72,7 +72,7 @@ const Creator = () => {
       name: "",
       description: "",
       image: "",
-      released: "",
+      releaseDate: "",
       rating: "",
       platforms: [],
       genres: [],
@@ -82,20 +82,20 @@ const Creator = () => {
   function handleSelect(e) {
     setInput({
       ...input,
-      genres: [input.gens, e.target.value].filter(Boolean),
+      genres: [...input.genres, e.target.value].filter(Boolean),
     });
   }
-  // function handlePlats(e) {
-  //   setInput({
-  //     ...input,
-  //     platforms: [input.platforms, e.target.value].filter(Boolean),
-  //   });
-  // }
+  function handlePlats(e) {
+    setInput({
+      ...input,
+      platforms: [...input.platforms, e.target.value].filter(Boolean),
+    });
+  }
 
   function handleDelete(el) {
     setInput({
       ...input,
-      genres: input.gens.filter((gen) => gen !== el),
+      genres: input.genres.filter((gen) => gen !== el),
     });
   }
   if (gens.length) {
@@ -145,10 +145,9 @@ const Creator = () => {
               Rating:
               <input
                 type="number"
-                min="0"
-                max="5"
                 value={input.rating}
                 name="rating"
+                min="0"
                 required
                 onChange={(e) => handleChange(e)}
               />
@@ -165,23 +164,29 @@ const Creator = () => {
                 name="released"
                 onChange={(e) => handleChange(e)}
               />
-              {error.released && <p>{error.released} </p>}
+              {error.releaseDate && <p>{error.releaseDate} </p>}
             </label>
           </div>
           <div>
             <label>
               Platforms:
-              <select name="platforms" onChange={(e) => handleChange(e)}>
+              <select name="platforms" onChange={(e) => handlePlats(e)}>
                 <option value="">-</option>
-                <option value="PS3">PS3</option>
-                <option value="PS4">PS4</option>
-                <option value="PS5">PS5</option>
+                <option value="PlayStation 3">PS3</option>
+                <option value="PlayStation 4">PS4</option>
+                <option value="PlayStation 5">PS5</option>
+                <option value="PS Vita">PS Vita</option>
                 <option value="Wii">Wii</option>
                 <option value="Wii U">Wii U</option>
+                <option value="Nintendo Switch">Switch</option>
                 <option value="PC">PC</option>
+                <option value="Linux">Linux</option>
+                <option value="macOS">macOS</option>
+                <option value="iOS">iOS</option>
+                <option value="Android">Android</option>
                 <option value="Xbox 360">Xbox 360</option>
                 <option value="Xbox One">Xbox One</option>
-                <option value="Xbox Series">Xbox Series</option>
+                <option value="Xbox Series S/X">Xbox Series</option>
               </select>
               {error.platforms && <p>{error.platforms} </p>}
             </label>
@@ -207,6 +212,7 @@ const Creator = () => {
           </button>
         </form>
         <ul>
+          <span>Estoy muy feliz de estar acá</span>
           {input.gens?.map((el) => (
             <div>
               <button onClick={() => handleDelete(el)}>x</button>
@@ -214,9 +220,7 @@ const Creator = () => {
             </div>
           ))}
         </ul>
-        <Link to="/home">
-          <button>Back</button>
-        </Link>
+        <button onClick={handleClick}>Back</button>
       </div>
     );
   } else {
