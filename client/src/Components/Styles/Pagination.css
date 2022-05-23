@@ -1,5 +1,5 @@
 #Pagination {
-    width: 45vw;
+    width: 25vw;
     height: 10vh;
     display: flex;
     flex-direction: row;
@@ -7,6 +7,10 @@
     justify-content: space-evenly;
     align-content: center;
     background-color: #352d3e;
+    border-radius: 40px;
+}
+#Pagination:ul{
+    display: none;
 }
 #Page{
     color: #ffecdb;
@@ -14,10 +18,8 @@
     padding: 1em 1.2em;
     width: 2vw ;
     height: 2vh;
-    margin-right: 0.7em;
     background-image: url('https://i.gifer.com/7sBM.gif');
     background-size: cover;
-    background-repeat: none;
     background-position: top;
     border-radius: 60%;
 }

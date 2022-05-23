@@ -1,26 +1,35 @@
 #container{
     display: flex;
-    justify-content: center;
-    align-items: center;
     align-content: center;
-    width: 32vw;
-    height: 25vh;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: center;
+    width: 400px;
+    height: 220px;
     border-radius: 1em;
     background-color: rgba(255, 102, 196, 0.575);
-    margin: 1rem;
+    margin: 0.8rem;
 }
 #container img {
-    max-height: 20vh;
-    max-width: 16vw;
+    margin-left: 5px;
+    height: 150px;
+    width: 150px;
     object-fit: cover;
-    border-radius: 5em;
-    height: auto;
-    width: auto;
+    border-radius: 100%;
 }
+#info{
+    color:aliceblue;
+    margin-left: 15px;
+}
+#info h1{
+    font-size: large;
+}
+
 #genR {
+    font-size: smaller;
     color: beige;
     background-color: rgba(156, 11, 11, 0.7);border-radius: 4px;
-    padding-right: 0.5rem;
-    padding-left: 0.5rem;
+    padding-right: 4px;
+    padding-left: 4px;
     margin-right: 4px;
 }
