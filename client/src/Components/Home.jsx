@@ -37,18 +37,23 @@ const Home = () => {
           <button key={"butCreate"} className="butCreate">
             <Link to="/create">Let's create a new one</Link>
           </button>
-          <Filters />
+          <Filters currentPage={currentPage} setCurrentPage={setCurrentPage} />
           <Searchbar />
         </nav>
         <div key={"cCont"} id="cardContainer">
           {games &&
             currentGames?.map((GG) => {
               return (
-                <Link to={"/home/" + GG.id}>
+                <Link
+                  key={"thoseLinks." + GG.id}
+                  style={{ textDecoration: "none" }}
+                  to={"/home/" + GG.id}
+                >
                   <Cards
                     name={GG.name}
                     image={GG.image}
                     genres={GG.genres}
+                    rating={GG.rating}
                     key={GG.id}
                   />
                 </Link>
