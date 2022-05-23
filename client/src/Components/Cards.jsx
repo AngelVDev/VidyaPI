@@ -1,7 +1,7 @@
 import React from "react";
 import "./Styles/Cards.css";
 
-const Cards = ({ image, name, genres }) => {
+const Cards = ({ image, name, genres, rating }) => {
   return (
     <div id="container">
       <div id="info">
@@ -9,11 +9,14 @@ const Cards = ({ image, name, genres }) => {
         <p>
           Genres:{" "}
           {genres?.map((el) => (
-            <span id="genR">{el.name}</span>
+            <span key={el.name + "id"} id="genR">
+              {el.name}
+            </span>
           ))}
         </p>
+        <h2>✨: {rating}</h2>
       </div>
-      <img src={image} alt="cardimgerror" />
+      <img src={image} preload="true" alt="cardimgerror" />
     </div>
   );
 };
