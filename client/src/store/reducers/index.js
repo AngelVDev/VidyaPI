@@ -52,7 +52,7 @@ function rootReducer(state = initialState, action) {
       const falseGames = [...state.games];
       const sortRate =
         action.payload === "Low"
-          ? state.games.sort((a, b) => {
+          ? state.games.slice().sort((a, b) => {
               if (a.rating > b.rating) {
                 return 1;
               }
@@ -62,7 +62,7 @@ function rootReducer(state = initialState, action) {
               return 0;
             })
           : action.payload === "High"
-          ? state.games.sort((a, b) => {
+          ? state.games.slice().sort((a, b) => {
               if (a.rating > b.rating) {
                 return -1;
               }
@@ -80,7 +80,7 @@ function rootReducer(state = initialState, action) {
       const copeeGames = [...state.games];
       const sorted =
         action.payload === "ASC"
-          ? state.games.sort((a, b) => {
+          ? state.games.slice().sort((a, b) => {
               if (a.name > b.name) {
                 return 1;
               }
@@ -90,7 +90,7 @@ function rootReducer(state = initialState, action) {
               return 0;
             })
           : action.payload === "DSC"
-          ? state.games.sort((a, b) => {
+          ? state.games.slice().sort((a, b) => {
               if (a.name > b.name) {
                 return -1;
               }
@@ -111,6 +111,11 @@ function rootReducer(state = initialState, action) {
           : state.games.filter((element) =>
               element.genres.map((el) => el.name).includes(action.payload)
             );
+      if (filteredByGen.length < 1) {
+        return (
+          state.allGames && alert("There are no games with that genre here")
+        );
+      }
       return {
         ...state,
         allGames: filteredByGen,
