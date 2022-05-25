@@ -13,11 +13,6 @@ const Filters = ({ currentPage, setCurrentPage }) => {
   const thoseGenres = useSelector((state) => state.genres);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getGenres());
-    dispatch(getVideogames());
-  }, [dispatch]);
-
   const handleOrderName = (e) => {
     e.preventDefault();
     dispatch(orderByName(e.target.value));
@@ -38,6 +33,10 @@ const Filters = ({ currentPage, setCurrentPage }) => {
     e.preventDefault();
     dispatch(getVideogames());
   };
+  useEffect(() => {
+    dispatch(getGenres());
+    dispatch(getVideogames());
+  }, [dispatch]);
 
   return (
     <>
