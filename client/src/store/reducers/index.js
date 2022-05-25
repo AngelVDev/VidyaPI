@@ -111,11 +111,6 @@ function rootReducer(state = initialState, action) {
           : state.games.filter((element) =>
               element.genres.map((el) => el.name).includes(action.payload)
             );
-      if (filteredByGen.length < 1) {
-        return (
-          state.allGames && alert("There are no games with that genre here")
-        );
-      }
       return {
         ...state,
         allGames: filteredByGen,
