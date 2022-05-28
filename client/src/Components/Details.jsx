@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { getDetails } from "../store/actions";
+import { clear, getDetails } from "../store/actions";
 import Loader from "./Loader";
 import "./Styles/Details.css";
 
@@ -10,6 +10,7 @@ const Detail = () => {
   const { id } = useParams();
   const gemu = useSelector((state) => state.gameDetail);
   useEffect(() => {
+    dispatch(clear());
     dispatch(getDetails(id));
   }, [dispatch, id]);
   if (gemu.id) {
