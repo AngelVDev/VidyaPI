@@ -121,3 +121,8 @@ export function deleteById(id) {
     }
   };
 }
+export function clear() {
+  return {
+    type: "CLEAR",
+  };
+}

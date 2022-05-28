@@ -115,6 +115,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         allGames: filteredByGen,
       };
+    case "CLEAR":
+      return {
+        ...state,
+        gameDetail: [],
+      };
     default:
       return {
         ...state,
