@@ -1,6 +1,8 @@
 const { Videogame, Genre } = require("../db");
 const { Router } = require("express");
 const { allInfo } = require("../controllers/vidya.controllers");
+const axios = require("axios");
+const { API_KEY } = process.env;
 const router = Router();
 
 router.get("/videogames", async (req, res) => {
@@ -28,7 +30,7 @@ router.get("/videogames/:id", async (req, res) => {
   const vidyas = await allInfo();
   try {
     const vidyaID = await vidyas.find((element) => `${element.id}` === id);
-    if (!vidyaID) {
+    if (id.includes("-")) {
       const vidByDB = await Videogame.findByPk(id, {
         include: { model: Genre },
       });
@@ -36,10 +38,14 @@ router.get("/videogames/:id", async (req, res) => {
         ? res.status(200).json(vidByDB)
         : res.status(404).send("INVALID ID IN DB");
     } else {
+      const descID = await axios.get(
+        `https://api.rawg.io/api/games/${id}?key=${API_KEY}`
+      );
+      vidyaID.description = descID.data.description;
       res.status(200).json(vidyaID);
     }
   } catch (err) {
-    res.status(500).send(error);
+    res.status(500).send(err);
     console.log(err);
   }
 });
