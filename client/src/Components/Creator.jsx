@@ -4,16 +4,17 @@ import { useNavigate } from "react-router-dom";
 import { createGame, getGenres, getVideogames } from "../store/actions";
 import Loader from "./Loader";
 import "./Styles/Creator.css";
+import { Button1, Button2, InputF } from "./Styles/Styled";
 function validateForms(input) {
   let error = {};
-  if (!input.name) {
+  if (input.name.length < 1) {
     error.name = "Name required";
   }
   if (input.description.length < 10) {
     error.description =
       "Description too short; write something above 10 characters";
   }
-  if (!input.image.includes("https")) {
+  if (input.image.includes(!"https")) {
     error.image = "Please put a valid URL";
   }
   if (input.rating < 1 || input.rating > 5) {
@@ -22,10 +23,10 @@ function validateForms(input) {
   if (input.releaseDate === null) {
     error.releaseDate = "Release date cannot be empty";
   }
-  if (!input.platforms.length) {
+  if (input.platforms.length < 0) {
     error.platforms = "Please select the platforms";
   }
-  if (!input.genres.length) {
+  if (input.genres.length < 0) {
     error.genres = "Select at least one genre";
   }
   return error;
@@ -92,48 +93,44 @@ const Creator = () => {
     });
   }
 
-  function handleDelete(el) {
-    setInput({
-      ...input,
-      genres: input.genres.filter((gen) => gen !== el),
-    });
-  }
-  if (gens.length) {
+  if (gens) {
     return (
       <div className="containerCreator" key="rootCreator">
-        <h1> GAME to be created:</h1>
+        <h1 id="acheuno"> CREATE YOUR GAME</h1>
         <form className="formS" key="form" onSubmit={(e) => handleSubmit(e)}>
           <div>
             <label>
-              Name:
-              <input
+              NAME:
+              <InputF
                 type="text"
                 value={input.name}
                 name="name"
                 required
                 onChange={(e) => handleChange(e)}
               />
-              {error.name && <p>{error.name} </p>}
+              {error.name && <p className="error">{error.name} </p>}
             </label>
           </div>
           <div>
             <label>
-              Description:
-              <input
+              DESCRIPTION:
+              <InputF
                 type="text"
                 value={input.description}
                 name="description"
                 required
                 onChange={(e) => handleChange(e)}
               />
-              {error.description && <p>{error.description} </p>}
+              {error.description && (
+                <p className="error">{error.description} </p>
+              )}
             </label>
           </div>
           <div>
             <label>
-              Image:
-              <input
-                type="text"
+              IMAGE:
+              <InputF
+                type="url"
                 value={input.image}
                 name="image"
                 onChange={(e) => handleChange(e)}
@@ -142,8 +139,8 @@ const Creator = () => {
           </div>
           <div>
             <label>
-              Rating:
-              <input
+              RATING:
+              <InputF
                 type="number"
                 value={input.rating}
                 name="rating"
@@ -151,25 +148,27 @@ const Creator = () => {
                 required
                 onChange={(e) => handleChange(e)}
               />
-              {error.rating && <p>{error.rating} </p>}
+              {error.rating && <p className="error">{error.rating} </p>}
             </label>
           </div>
           <div>
             <label>
-              Released:
-              <input
+              RELEASED:
+              <InputF
                 type="text"
                 required
                 value={input.released}
                 name="released"
                 onChange={(e) => handleChange(e)}
               />
-              {error.releaseDate && <p>{error.releaseDate} </p>}
+              {error.releaseDate && (
+                <p className="error">{error.releaseDate} </p>
+              )}
             </label>
           </div>
           <div>
             <label>
-              Platforms:
+              PLATFORMS:
               <select name="platforms" onChange={(e) => handlePlats(e)}>
                 <option value="">-</option>
                 <option value="PlayStation 3">PS3</option>
@@ -188,11 +187,11 @@ const Creator = () => {
                 <option value="Xbox One">Xbox One</option>
                 <option value="Xbox Series S/X">Xbox Series</option>
               </select>
-              {error.platforms && <p>{error.platforms} </p>}
+              {error.platforms && <p className="error">{error.platforms} </p>}
             </label>
           </div>
           <label>
-            Genres:
+            GENRES:
             <select name="genres" onChange={(e) => handleSelect(e)}>
               <option value="">-</option>
               {gens?.map((el) => (
@@ -201,26 +200,17 @@ const Creator = () => {
                 </option>
               ))}
             </select>
-            {error.genres && <p>{error.genres} </p>}
+            {error.genres && <p className="error">{error.genres} </p>}
           </label>
-          <button
+          <Button2
             onClick={handleClick}
             disabled={Object.keys(error).length}
             type="submit"
           >
-            Send to database
-          </button>
+            SEND TO DATABASE
+          </Button2>
         </form>
-        <ul>
-          <span>Estoy muy feliz de estar acá</span>
-          {input.gens?.map((el) => (
-            <div>
-              <button onClick={() => handleDelete(el)}>x</button>
-              <p>PAPEL DE DIARIO{el}</p>
-            </div>
-          ))}
-        </ul>
-        <button onClick={handleClick}>Back</button>
+        <Button1 onClick={handleClick}>Back</Button1>
       </div>
     );
   } else {
