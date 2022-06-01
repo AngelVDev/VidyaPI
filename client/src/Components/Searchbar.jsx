@@ -24,7 +24,7 @@ const SearchBar = () => {
         onChange={(e) => handleInputChange(e)}
       />
       <button className="Sub" type="submit" onClick={(e) => handleSubmit(e)}>
-        Search
+        <span id="spa">SEARCH</span>
       </button>
     </div>
   );
