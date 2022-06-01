@@ -1,4 +1,4 @@
-#MASTERCARD{
+.MASTERCARD{
     background-image: url('https://i.pinimg.com/originals/61/71/81/6171819be4c31993357d758196c75701.gif');
     background-repeat: no-repeat;
     background-size: cover;
@@ -10,35 +10,77 @@
     justify-content: center;
     align-items: center;
 }
-#detailContainer{
+.desc{
+    display: flex;
+    width: 40vw;
+    height: 150px;
+    font-size: 11px;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+.detailContainer{
     display: flex;
     flex-direction: column;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
     color: white;
     background-color: rgba(253, 70, 198, 0.4);
     width: 75vw;
     height: 70vh;
     border-radius: 11px;
     padding: 2.5em;
+    margin-bottom: 4vh;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    z-index: 1;
 }
-#detailContainer h2{
+.detailContainer>h2{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
     color: rgb(255, 209, 245);
 }
-#detailContainer img{
-    height: auto;
-    max-width: 70%;
+.detailContainer >img{
+    max-height: 65vh;
+    max-width: 65vw;
     border-radius: 2em;
+    position: absolute;
+    opacity: 60%;
+    z-index: -1;
 }
-#detailContainer button{
-    background-color: deeppink;
-    text-decoration: none;
-}
-#detailContainer span {
+.detailContainer>p>span {
     color: beige;
-    background-color: rgba(156, 11, 11, 0.7);border-radius: 4px;
+    background-color: rgba(156, 11, 11, 0.7);
+    border-radius: 4px;
     padding-right: 0.5rem;
     padding-left: 0.5rem;
     margin-right: 4px;
+}
+
+.screenTainer {
+    display: flex;
+    height: auto;
+    width: 11vw;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 5vh;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    align-content: flex-end;
+    position: relative;
+}
+
+.imgTainer{
+
+    max-height: 10vh;
+    max-width: 8vw;
+
+    border-radius: 4px;
+
+}
+.imgTainer:hover{
+    max-height: 15vh;
+    border-radius: 4%;
 }
