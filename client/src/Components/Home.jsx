@@ -11,6 +11,7 @@ import Pagination from "./Pagination";
 
 const Home = () => {
   const games = useSelector((state) => state.allGames);
+  const gens = useSelector((state) => state?.genres);
   const dispatch = useDispatch();
   /*<--Pagination-->*/
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,7 +28,7 @@ const Home = () => {
     dispatch(getVideogames());
   }, [dispatch]);
 
-  if (games.length) {
+  if (games && gens) {
     return (
       <div key={"parent"} className="Wall">
         <h3 key={"h3"} className="Welcome">
@@ -37,7 +38,7 @@ const Home = () => {
           <button key={"butCreate"} className="butCreate">
             <Link to="/create">Let's create a new one</Link>
           </button>
-          <Filters currentPage={currentPage} setCurrentPage={setCurrentPage} />
+          <Filters gens={gens} />
           <Searchbar />
         </nav>
         <div key={"cCont"} id="cardContainer">
