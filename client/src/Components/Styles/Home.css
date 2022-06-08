@@ -1,11 +1,7 @@
 .Wall{
-    background-image: url("https://cdn.pixabay.com/photo/2017/06/08/07/20/texture-2382757_1280.jpg");
-    background-blend-mode: multiply;
-    background-position: bottom;
     color: aliceblue;
-    background-color: #352d3e;
+    background: linear-gradient(0deg, #352D3E 15%, #B15E8C 90%);
     background-repeat:repeat-y;
-    background-size:cover;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
