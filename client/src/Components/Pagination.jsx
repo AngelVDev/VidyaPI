@@ -15,7 +15,7 @@ const Pagination = ({ games, gamesPerPage, pagination }) => {
         {pageNum &&
           pageNum.map((number) => (
             // eslint-disable-next-line jsx-a11y/anchor-is-valid
-            <a key={number} id="Page" onClick={() => pagination(number)}>
+            <a key={number} className="Page" onClick={() => pagination(number)}>
               {number}
             </a>
           ))}
