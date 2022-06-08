@@ -2,9 +2,11 @@
     width: 220px;
     height: 8vh;
     display: flex;
-    background-color: #352d3e;
+    background: #352D3E;
+    box-shadow: 0px 0px 10px 5px rgba(255, 102, 196, 0.08);
     border-radius: 40px;
-
+    margin-bottom: 20px;
+    margin-top: 15px;
 }
 .Page{
     color: #ffecdb;

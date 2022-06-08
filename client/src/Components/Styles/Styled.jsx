@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Button1 = styled.button`
@@ -34,7 +35,8 @@ export const Button1 = styled.button`
   }
 `;
 export const Button2 = styled.button`
-  padding: 0.8em 1.8em;
+  margin: 5px;
+  padding: 8px 10px;
   border: 2px solid #ff009d;
   position: relative;
   overflow: hidden;
@@ -89,14 +91,55 @@ export const InputF = styled.input`
   &:focus&:placeholder {
     color: #fa4753;
   }
-  /* color: #8707ff;
-  border: 2px solid #8707ff;
-  border-radius: 10px;
-  padding: 10px 25px;
-  background: transparent;
-  max-width: 190px;
-
-  &:active {
-    box-shadow: 2px 2px 15px #8707ff inset;
-  } */
+`;
+export const Select1 = styled.select`
+  background-color: #54006e5e;
+  color: #7fe5ff;
+  border-radius: 20px;
+  border: skyblue;
+  text-shadow: -2px 0px 3px rgba(100, 231, 255, 0.88), 2px 0px 3px #ff0046;
+  &:focus {
+    background-color: #430069;
+  }
+`;
+export const ButtonT = styled.button`
+  margin: 5px;
+  padding: 8px 10px;
+  border: 2px solid #000000;
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 15px;
+  transition: 0.3s;
+  z-index: 1;
+  font-family: inherit;
+  color: #ffffff;
+  &:before {
+    content: "";
+    width: 0;
+    height: 300%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    background: #000000;
+    transition: 0.5s ease;
+    display: block;
+    z-index: -1;
+  }
+  &:hover&:before {
+    width: 105%;
+  }
+  &:hover {
+    text-shadow: -2px 0px 3px rgba(100, 231, 255, 0.88), 2px 0px 3px #ff0046;
+  }
+`;
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: white;
+  &:hover {
+    text-shadow: -2px 0px 3px rgba(100, 231, 255, 0.88), 2px 0px 3px #ff0046;
+  }
 `;

@@ -16,7 +16,8 @@
     height: 100vh;
 }
 label{
-    color: #8707ff;
+    color: #ffffff;
+    text-shadow: -2px 0px 3px rgba(100, 231, 255, 0.88), 2px 0px 3px #FF0046;
     font-weight: 700;
 }
 #acheuno{
