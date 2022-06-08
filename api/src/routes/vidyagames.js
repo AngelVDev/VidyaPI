@@ -70,7 +70,7 @@ router.post("/videogames", async (req, res) => {
     console.log(error);
   }
 });
-router.get("videogames/:id/delete", async (req, res) => {
+router.get("/videogames/:id/delete", async (req, res) => {
   try {
     await Videogame.destroy({
       where: { id: req.params.id },
