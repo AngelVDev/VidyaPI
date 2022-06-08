@@ -8,6 +8,8 @@ import Loader from "./Loader";
 import Searchbar from "./Searchbar";
 import Filters from "./Filters";
 import Pagination from "./Pagination";
+import vid from "../assets/vid.mp4";
+import { ButtonT, StyledLink } from "./Styles/Styled";
 
 const Home = () => {
   const games = useSelector((state) => state.allGames);
@@ -31,13 +33,19 @@ const Home = () => {
   if (games && gens) {
     return (
       <div key={"parent"} className="Wall">
+        <video loop autoPlay>
+          <source src={vid} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
         <h3 key={"h3"} className="Welcome">
           The sight of all this games, fills you with determination 🌟
         </h3>
         <nav key={"justNav"} className="Navi">
-          <button key={"butCreate"} className="butCreate">
-            <Link to="/create">Let's create a new one</Link>
-          </button>
+          <ButtonT key={"butCreate"}>
+            <StyledLink style={{ textDecoration: "none" }} to="/create">
+              Let's create a new one
+            </StyledLink>
+          </ButtonT>
           <Filters gens={gens} />
           <Searchbar />
         </nav>

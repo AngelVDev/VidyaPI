@@ -1,6 +1,6 @@
 .Wall{
     color: aliceblue;
-    background: linear-gradient(0deg, #352D3E 15%, #B15E8C 90%);
+    background: linear-gradient(0deg, #190035 65%, #b15e8c3b 90%);
     background-repeat:repeat-y;
     display: flex;
     flex-direction: column;
@@ -24,4 +24,21 @@
 .Welcome{
     font-family: 'Determination Mono Web Regular';
     text-shadow: 0px 0px 8px #000000;
+}
+video {
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-position: bottom;
+    z-index: -1;
+  }
+.Navi{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
 }
