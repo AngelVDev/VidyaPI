@@ -51,12 +51,14 @@ const Detail = () => {
               : gemu.genres?.map((el) => <span>{el.name}</span>)}
           </p>
           <div className="screenTainer">
-            {gemu.screens.map((el) => (
-              <a href={el}>
-                {" "}
-                <img className="imgTainer" src={el} alt="screen" />{" "}
-              </a>
-            ))}
+            {gemu.screens
+              ? gemu.screens.map((el) => (
+                  <a href={el}>
+                    {" "}
+                    <img className="imgTainer" src={el} alt="screen" />{" "}
+                  </a>
+                ))
+              : null}
           </div>
         </div>
         <Button2 onClick={handleClick}>Let's go back</Button2>
