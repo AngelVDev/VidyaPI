@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   filterByGenre,
   getGenres,
@@ -8,9 +8,9 @@ import {
   orderByRating,
   showCreated,
 } from "../store/actions";
+import { Button1, Button2, Select1 } from "./Styles/Styled";
 
-const Filters = ({ currentPage, setCurrentPage }) => {
-  const thoseGenres = useSelector((state) => state.genres);
+const Filters = ({ gens }) => {
   const dispatch = useDispatch();
 
   const handleOrderName = (e) => {
@@ -40,39 +40,40 @@ const Filters = ({ currentPage, setCurrentPage }) => {
 
   return (
     <>
-      <button onClick={(e) => handleReset(e)}>RESET</button>
+      <Button2 onClick={(e) => handleReset(e)}>RESET</Button2>
       <label>
         Sort by name
-        <select onChange={(e) => handleOrderName(e)}>
+        <Select1 onChange={(e) => handleOrderName(e)}>
           <option value="">-</option>
           <option value="ASC">A to Z</option>
           <option value="DSC">Z to A</option>
-        </select>
+        </Select1>
       </label>
       <label>
         Sort by rating
-        <select onChange={(e) => handleOrderRating(e)}>
+        <Select1 onChange={(e) => handleOrderRating(e)}>
           <option value="">-</option>
           <option value="Low">Low to hi</option>
           <option value="High">Hi to low</option>
-        </select>
+        </Select1>
       </label>
       <label>
         Filter by genre
-        <select onChange={(e) => handleFilterGen(e)}>
+        <Select1 onChange={(e) => handleFilterGen(e)}>
           <option value="ALL">All</option>
-          {thoseGenres?.map((genre) => {
-            return <option key={genre.id}>{genre.name}</option>;
-          })}
-        </select>
+          {gens &&
+            gens?.map((genre) => {
+              return <option key={genre.id}>{genre.name}</option>;
+            })}
+        </Select1>
       </label>
       <label>
         Filter by source
-        <select onChange={(e) => handleFilterSrc(e)}>
+        <Select1 onChange={(e) => handleFilterSrc(e)}>
           <option value="MIX">Mixed</option>
           <option value="API">API</option>
           <option value="DB">Createds</option>
-        </select>
+        </Select1>
       </label>
     </>
   );
