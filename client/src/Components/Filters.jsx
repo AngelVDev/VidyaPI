@@ -10,7 +10,7 @@ import {
 } from "../store/actions";
 import { Button1, Button2, Select1 } from "./Styles/Styled";
 
-const Filters = ({ gens }) => {
+const Filters = ({ gens, setCurrentPage }) => {
   const dispatch = useDispatch();
 
   const handleOrderName = (e) => {
@@ -27,6 +27,7 @@ const Filters = ({ gens }) => {
   };
   const handleFilterSrc = (e) => {
     e.preventDefault();
+    setCurrentPage(1);
     dispatch(showCreated(e.target.value));
   };
   const handleReset = (e) => {

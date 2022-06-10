@@ -46,7 +46,7 @@ const Home = () => {
               Let's create a new one
             </StyledLink>
           </ButtonT>
-          <Filters gens={gens} />
+          <Filters gens={gens} setCurrentPage={setCurrentPage} />
           <Searchbar />
         </nav>
         <div key={"cCont"} id="cardContainer">
