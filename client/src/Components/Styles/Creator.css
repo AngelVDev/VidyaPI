@@ -26,3 +26,17 @@ label{
 .error{
     color: rgb(255, 230, 0);
 }
+.Deleter{
+    margin: 3px;
+}
+.delButton{
+    margin: 10px;
+    color: white;
+    background-color: transparent;
+    border: #FF0046;
+}
+.delButton:hover{
+    color: white;
+    background-color: #FF0046;
+    border: #FF0046;
+}
