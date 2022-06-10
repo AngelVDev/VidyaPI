@@ -114,7 +114,9 @@ export function orderByRating(payload) {
 export function deleteById(id) {
   return async function (dispatch) {
     try {
-      const json = await axios.get(`http://localhost:3001/${id}/delete`);
+      const json = await axios.get(
+        `http://localhost:3001/videogames/${id}/delete`
+      );
       return dispatch({ type: "DELETE_BY_ID", payload: json.data });
     } catch (err) {
       console.log(err);
