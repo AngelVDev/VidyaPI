@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { createGame, getGenres, getVideogames } from "../store/actions";
 import Loader from "./Loader";
 import "./Styles/Creator.css";
-import { Button1, Button2, InputF } from "./Styles/Styled";
+import { Button1, Button2, InputF, Select1 } from "./Styles/Styled";
 function validateForms(input) {
   let error = {};
   if (input.name.length < 1) {
@@ -14,19 +14,16 @@ function validateForms(input) {
     error.description =
       "Description too short; write something above 10 characters";
   }
-  if (input.image.includes(!"https")) {
-    error.image = "Please put a valid URL";
-  }
-  if (input.rating < 1 || input.rating > 5) {
+  if (isNaN(input.rating) === false && (input.rating < 1 || input.rating > 5)) {
     error.rating = "The value must be a number between 1 and 5";
   }
-  if (input.releaseDate === null) {
+  if (input.releaseDate.length <= 0) {
     error.releaseDate = "Release date cannot be empty";
   }
-  if (input.platforms.length < 0) {
+  if (input.platforms.length <= 0) {
     error.platforms = "Please select the platforms";
   }
-  if (input.genres.length < 0) {
+  if (input.genres.length <= 0) {
     error.genres = "Select at least one genre";
   }
   return error;
@@ -92,6 +89,18 @@ const Creator = () => {
       platforms: [...input.platforms, e.target.value].filter(Boolean),
     });
   }
+  function handleDelete(e) {
+    setInput({
+      ...input,
+      genres: input.genres.filter((g) => g !== e),
+    });
+  }
+  function handleDeletePlat(e) {
+    setInput({
+      ...input,
+      platforms: input.platforms.filter((g) => g !== e),
+    });
+  }
 
   if (gens) {
     return (
@@ -105,7 +114,6 @@ const Creator = () => {
                 type="text"
                 value={input.name}
                 name="name"
-                required
                 onChange={(e) => handleChange(e)}
               />
               {error.name && <p className="error">{error.name} </p>}
@@ -118,7 +126,6 @@ const Creator = () => {
                 type="text"
                 value={input.description}
                 name="description"
-                required
                 onChange={(e) => handleChange(e)}
               />
               {error.description && (
@@ -144,8 +151,6 @@ const Creator = () => {
                 type="number"
                 value={input.rating}
                 name="rating"
-                min="0"
-                required
                 onChange={(e) => handleChange(e)}
               />
               {error.rating && <p className="error">{error.rating} </p>}
@@ -156,9 +161,8 @@ const Creator = () => {
               RELEASED:
               <InputF
                 type="text"
-                required
-                value={input.released}
-                name="released"
+                value={input.releaseDate}
+                name="releaseDate"
                 onChange={(e) => handleChange(e)}
               />
               {error.releaseDate && (
@@ -169,7 +173,7 @@ const Creator = () => {
           <div>
             <label>
               PLATFORMS:
-              <select name="platforms" onChange={(e) => handlePlats(e)}>
+              <Select1 name="platforms" onChange={(e) => handlePlats(e)}>
                 <option value="">-</option>
                 <option value="PlayStation 3">PS3</option>
                 <option value="PlayStation 4">PS4</option>
@@ -186,20 +190,20 @@ const Creator = () => {
                 <option value="Xbox 360">Xbox 360</option>
                 <option value="Xbox One">Xbox One</option>
                 <option value="Xbox Series S/X">Xbox Series</option>
-              </select>
+              </Select1>
               {error.platforms && <p className="error">{error.platforms} </p>}
             </label>
           </div>
           <label>
             GENRES:
-            <select name="genres" onChange={(e) => handleSelect(e)}>
+            <Select1 name="genres" onChange={(e) => handleSelect(e)}>
               <option value="">-</option>
               {gens?.map((el) => (
                 <option key={el.id} value={el.name}>
                   {el.name}
                 </option>
               ))}
-            </select>
+            </Select1>
             {error.genres && <p className="error">{error.genres} </p>}
           </label>
           <Button2
@@ -210,6 +214,26 @@ const Creator = () => {
             SEND TO DATABASE
           </Button2>
         </form>
+        {input.genres.length > 0 && (
+          <div className="Deleter" key={"Dof"}>
+            <label>Selected genres:</label>
+            {input.genres.map((e) => (
+              <button className="delButton" onClick={() => handleDelete(e)}>
+                {e} x
+              </button>
+            ))}
+          </div>
+        )}
+        {input.platforms.length > 0 && (
+          <div className="Deleter" key={"Plaf"}>
+            <label>Selected platforms:</label>
+            {input.platforms.map((e) => (
+              <button className="delButton" onClick={() => handleDeletePlat(e)}>
+                {e} x
+              </button>
+            ))}
+          </div>
+        )}
         <Button1 onClick={handleClick}>Back</Button1>
       </div>
     );
