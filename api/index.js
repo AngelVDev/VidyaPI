@@ -20,10 +20,10 @@
 const server = require("./src/app.js");
 const { genAPI } = require("./src/controllers/gen.controllers.js");
 const { conn } = require("./src/db.js");
-
+const PORT = process.env.PORT;
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
-  server.listen(3001, () => {
+conn.sync({ force: false }).then(() => {
+  server.listen(PORT || 3001, () => {
     genAPI();
     console.log("%s LOADING at 3001"); // eslint-disable-line no-console
   });
