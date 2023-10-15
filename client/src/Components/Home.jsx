@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getVideogames, getGenres } from "../store/actions";
 import "./Styles/Home.css";
@@ -14,7 +14,6 @@ import { ButtonT, StyledLink } from "./Styles/Styled";
 const Home = () => {
   const games = useSelector((state) => state.allGames);
   const gens = useSelector((state) => state.genres);
-  const dispatch = useDispatch();
   /*<--Pagination-->*/
   const [currentPage, setCurrentPage] = useState(1);
   // eslint-disable-next-line no-unused-vars
@@ -58,19 +57,19 @@ if (games && gens) {
       </nav>
       <div key={"cCont"} id="cardContainer">
         {games &&
-          currentGames.map((GG) => {
+          currentGames?.map((GG) => {
             return (
               <Link
-                key={"thoseLinks." + GG.id}
+                key={"thoseLinks." + GG?.id}
                 style={{ textDecoration: "none" }}
-                to={"/home/" + GG.id}
+                to={"/home/" + GG?.id}
               >
                 <Cards
-                  name={GG.name}
-                  image={GG.image}
-                  genres={GG.genres}
-                  rating={GG.rating}
-                  key={GG.id}
+                  name={GG?.name}
+                  image={GG?.image}
+                  genres={GG?.genres}
+                  rating={GG?.rating}
+                  key={GG?.id}
                 />
               </Link>
             );
