@@ -36,6 +36,8 @@ useEffect(() => {
   fetchAll()
 }, []);
 
+console.log(games, gens)
+
 if (games && gens) {
   return (
     <div key={"parent"} className="Wall">
