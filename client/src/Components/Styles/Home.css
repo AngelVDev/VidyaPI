@@ -17,12 +17,8 @@
     flex-wrap: wrap;
     justify-content: center;
 }
-@font-face {
-        font-family: 'Determination Mono Web Regular'; 
-        src: url('C:\WINDOWS\FONTS\DeterminationMonoWebRegular-Z5oq.ttf');
-}
 .Welcome{
-    font-family: 'Determination Mono Web Regular';
+    font-family: 'determination-mono-web-regular', sans-serif;
     text-shadow: 0px 0px 8px #000000;
 }
 video {
