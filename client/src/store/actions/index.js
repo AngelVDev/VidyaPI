@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = process.env.BACK_URL;
+axios.defaults.baseURL = process.env.BACK_URL ?? "http://localhost:3001";
 
 export function getVideogames() {
   return function (dispatch) {
