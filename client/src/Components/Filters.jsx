@@ -63,7 +63,7 @@ const Filters = ({ gens, setCurrentPage }) => {
         <Select1 onChange={(e) => handleFilterGen(e)}>
           <option value="ALL">All</option>
           {gens &&
-            gens?.map((genre) => {
+            gens.map((genre) => {
               return <option key={genre.id}>{genre.name}</option>;
             })}
         </Select1>

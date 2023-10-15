@@ -58,7 +58,7 @@ if (games && gens) {
       </nav>
       <div key={"cCont"} id="cardContainer">
         {games &&
-          currentGames?.map((GG) => {
+          currentGames.map((GG) => {
             return (
               <Link
                 key={"thoseLinks." + GG.id}
