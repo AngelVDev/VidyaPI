@@ -41,7 +41,7 @@ console.log(games, gens)
 if (games && gens) {
   return (
     <div key={"parent"} className="Wall">
-      <video loop autoPlay>
+      <video muted loop autoPlay>
         <source src={vid} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
