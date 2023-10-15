@@ -6,7 +6,7 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME,PG_URL } = process.env;
 
 let sequelize =
   process.env.NODE_ENV === "production"
-    ? new Sequelize(`${PG_URL}`)
+    ? new Sequelize(`${PG_URL}?sslmode=require`)
     : new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/videogames`, {
         logging: false,
         native: false,
